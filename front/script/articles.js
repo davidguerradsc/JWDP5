@@ -18,8 +18,6 @@ fetch("http://localhost:3000/api/teddies")
 					</div>
             	</div>
             </div>`;
-			console.log(new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(article.price));
-			console.log(article.name);
 		}
 	})
 	.catch(function (err) {
