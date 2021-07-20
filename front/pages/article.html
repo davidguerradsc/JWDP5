@@ -48,25 +48,40 @@
 
             <div class="col article">
                 <div class="card col-md-6">
-					<img src="" class="card-img-top image">
+					<img src="" id="image" class="card-img-top image">
 					<div class="card-body">
-						<h5 class="card-title name"></h5>
-						<p class="card-text description">description</p>
+						<h5 id="name" class="card-title name"></h5>
+						<p id="description" class="card-text description">description</p>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<select class="form-select couleur" aria-label="Default select example">
+								<select  class="form-select couleur" aria-label="Default select example">
 									<option selected>Choisissez une couleur</option>
 								</select>
 							</div>
 							<p class="card-text text-end col-md-5 fs-4 me-2 price"></p>
 						
 						</div>
-						<a href="" class="btn btn-primary ">Add to cart</a>
+						<div class="row">
+							<div class="col-md-6 justify-content-center">
+
+								
+									<button type="button" class="buttonMinusOne">-</button>
+									<input type="text" class="col-md-3 quantity" value="1">
+									<button type="button" class="buttonPlusOne">+</button>
+								
+							</div>
+							<div class="col-md-5 d-grid gap-2 d-md-flex justify-content-md-end">
+
+								<button type="button" class="btn btn-primary addToCart">Add to cart</button>
+							</div>
+						</div>
 					</div>
 				</div>
             </div>
 		</div>
-		<script src="../script/article.js"></script>
+		<script src="../js/functions.js"></script>
+		<script src="../js/article.js"></script>
+		<script src="../js/cart.js"></script>
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
