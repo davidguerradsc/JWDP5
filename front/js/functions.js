@@ -13,3 +13,5 @@ function pricePerQuantity(article, quantity) {
 	//formattingPrice(item);
 	return prix;
 }
+
+

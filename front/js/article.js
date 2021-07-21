@@ -36,13 +36,17 @@ fetch(`http://localhost:3000/api/teddies/${idArticle}`)
 				".couleur"
 			).innerHTML += `<option class="itemColor" value="${itemColor}">${itemColor}</option>`;
 
-			console.log(`${itemColor}`);
-
-			//return testColor;
+			//console.log(`${itemColor}`);
 		}
+		const couleur = document.querySelector(".couleur");
+		//let color = document.querySelector('.itemColor');
+		let checkedColor = couleur.addEventListener("change", () => {
+			checkedColor = couleur.value;
 
-		let testColor = document.querySelector(".itemColor");
-		console.log(testColor);
+			
+		});
+
+		//console.log(checkedColor);
 
 		// Envoi des données de l'article et la quantité commandé dans le pannier
 		document.querySelector(".addToCart").addEventListener("click", (e) => {
@@ -51,32 +55,29 @@ fetch(`http://localhost:3000/api/teddies/${idArticle}`)
 			const image = `${teddie.imageUrl}`;
 			const name = `${teddie.name}`;
 			const description = `${teddie.description}`;
-			const color = `${itemColor}`;
+			const color = checkedColor;
 			const quantity = qte.value;
 			const unitPrice = price;
 			const totalPrice = formattingPrice(
 				pricePerQuantity(`${teddie.price}`, `${qte.value}`)
 			);
 
-			console.log(idArticle);
-			console.log(image);
-			console.log(name);
-			console.log(description);
-			console.log(color);
-			console.log(quantity);
-			console.log(price);
-			console.log(totalPrice);
-
-			const cart = new Cart(id, image, name, description, color, unitPrice, totalPrice, quantity);
+			const cart = new Cart(
+				id,
+				image,
+				name,
+				description,
+				color,
+				unitPrice,
+				totalPrice,
+				quantity
+			);
 			console.log(cart);
 		});
 	})
 	.catch(function (err) {
 		//err
 	});
-
-let testColor = document.querySelector(".itemColor");
-console.log(`${testColor.value}`);
 
 let qte = document.querySelector(".quantity");
 let plusOne = document.querySelector(".buttonPlusOne");

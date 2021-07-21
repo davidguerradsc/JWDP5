@@ -46,38 +46,71 @@
 		<div class="container">
 			<h1>Orinoco</h1>
 
-            <div class="col article">
-                <div class="card col-md-6">
-					<img src="" id="image" class="card-img-top image">
+			<div class="col article">
+				<div class="card col-md-6">
+					<img src="" id="image" class="card-img-top image" />
 					<div class="card-body">
 						<h5 id="name" class="card-title name"></h5>
-						<p id="description" class="card-text description">description</p>
+						<p id="description" class="card-text description">
+							description
+						</p>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<select  class="form-select couleur" aria-label="Default select example">
-									<option selected>Choisissez une couleur</option>
+								<select
+									class="form-select couleur"
+									aria-label="Default select example"
+								>
+									<option value="">
+										Choisissez une couleur
+									</option>
 								</select>
 							</div>
-							<p class="card-text text-end col-md-5 fs-4 me-2 price"></p>
-						
+							<p
+								class="
+									card-text
+									text-end
+									col-md-5
+									fs-4
+									me-2
+									price
+								"
+							></p>
 						</div>
 						<div class="row">
 							<div class="col-md-6 justify-content-center">
-
-								
-									<button type="button" class="buttonMinusOne">-</button>
-									<input type="text" class="col-md-3 quantity" value="1">
-									<button type="button" class="buttonPlusOne">+</button>
-								
+								<button type="button" class="buttonMinusOne">
+									-
+								</button>
+								<input
+									type="text"
+									pattern="[0-9]"
+									class="col-md-3 quantity"
+									value="1"
+								/>
+								<button type="button" class="buttonPlusOne">
+									+
+								</button>
 							</div>
-							<div class="col-md-5 d-grid gap-2 d-md-flex justify-content-md-end">
-
-								<button type="button" class="btn btn-primary addToCart">Add to cart</button>
+							<div
+								class="
+									col-md-5
+									d-grid
+									gap-2
+									d-md-flex
+									justify-content-md-end
+								"
+							>
+								<button
+									type="button"
+									class="btn btn-primary addToCart"
+								>
+									Add to cart
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
-            </div>
+			</div>
 		</div>
 		<script src="../js/functions.js"></script>
 		<script src="../js/article.js"></script>
