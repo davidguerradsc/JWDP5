@@ -5,6 +5,18 @@ let parsedUrl = new URL(window.location.href);
 //identification de l'id dans l'Url
 let idArticle = parsedUrl.searchParams.get("id");
 
+//identification de l'input de choix our la quantité
+let qte = document.querySelector(".quantity");
+//console.log(qte);
+
+// Création du panier sous forme d'objet
+class Products {
+	constructor(id, color, quantity) {
+		this.id = id;
+		this.color = color;
+		this.quantity = quantity;
+	}
+}
 // récupération des données de l'article correspondant à l'id récupéré dan l'URL
 fetch(`http://localhost:3000/api/teddies/${idArticle}`)
 	.then((res) => {
@@ -29,71 +41,54 @@ fetch(`http://localhost:3000/api/teddies/${idArticle}`)
 		).textContent = `${teddie.description}`;
 		document.querySelector(".price").textContent = `Prix : ${price}`;
 
+		
+		
 		// Boucle permettant de récupérer les option de couleurs disponible pour chaque article
 		for (const itemColor of teddie.colors) {
 			// Ajout des options de couleurs pour chaque article
 			document.querySelector(
 				".couleur"
 			).innerHTML += `<option class="itemColor" value="${itemColor}">${itemColor}</option>`;
-
-			//console.log(`${itemColor}`);
 		}
+
 		const couleur = document.querySelector(".couleur");
-		//let color = document.querySelector('.itemColor');
 		let checkedColor = couleur.addEventListener("change", () => {
 			checkedColor = couleur.value;
-
-			
 		});
-
-		//console.log(checkedColor);
 
 		// Envoi des données de l'article et la quantité commandé dans le pannier
 		document.querySelector(".addToCart").addEventListener("click", (e) => {
 			e.preventDefault();
 			const id = idArticle;
-			const image = `${teddie.imageUrl}`;
-			const name = `${teddie.name}`;
-			const description = `${teddie.description}`;
 			const color = checkedColor;
 			const quantity = qte.value;
-			const unitPrice = price;
-			const totalPrice = formattingPrice(
-				pricePerQuantity(`${teddie.price}`, `${qte.value}`)
-			);
 
-			const cart = new Cart(
-				id,
-				image,
-				name,
-				description,
-				color,
-				unitPrice,
-				totalPrice,
-				quantity
-			);
-			console.log(cart);
+			if (color == undefined) {
+				alert("erreur couleur");
+			} else {
+				const products = new Products(id, color, quantity);
+				document.querySelector('.modal-text').innerText = `${teddie.name} en ${color} a bien été ajouté au panier !`;
+
+				let keys = `${teddie.name}_${color}`;
+
+				try {
+					localStorage.setItem(keys, JSON.stringify(products));
+				} catch (error) {
+					console.log(error);
+				}
+			}
+
 		});
 	})
 	.catch(function (err) {
-		//err
+		console.log(err);
 	});
 
-let qte = document.querySelector(".quantity");
-let plusOne = document.querySelector(".buttonPlusOne");
-let minusOne = document.querySelector(".buttonMinusOne");
+	
 
-//console.log(quantity.value);
+chooseQuantity();
 
-plusOne.addEventListener("click", function () {
-	qte.value++;
-	// console.log(quantity.value);
-});
 
-minusOne.addEventListener("click", function () {
-	qte.value--;
-	if (qte.value < 1) {
-		qte.value = 1;
-	}
-	// console.log(quantity.value);
-});
+
+
+
