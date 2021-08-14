@@ -5,9 +5,9 @@ let parsedUrl = new URL(window.location.href);
 //identification de l'id dans l'Url
 let idArticle = parsedUrl.searchParams.get("id");
 
-//identification de l'input de choix our la quantité
+//identification de l'input de choix pour la quantité
 let qte = document.querySelector(".quantity");
-//console.log(qte);
+console.log(qte.value);
 
 // Création du panier sous forme d'objet
 class Products {
@@ -41,35 +41,38 @@ fetch(`http://localhost:3000/api/teddies/${idArticle}`)
 		).textContent = `${teddie.description}`;
 		document.querySelector(".price").textContent = `Prix : ${price}`;
 
-		
-		
 		// Boucle permettant de récupérer les option de couleurs disponible pour chaque article
 		for (const itemColor of teddie.colors) {
 			// Ajout des options de couleurs pour chaque article
-			document.querySelector(
-				".couleur"
-			).innerHTML += `<option class="itemColor" value="${itemColor}">${itemColor}</option>`;
+			document.querySelector(".couleur").innerHTML += `<option class="itemColor" value="${itemColor}">${itemColor}</option>`;
 		}
 
 		const couleur = document.querySelector(".couleur");
 		let checkedColor = couleur.addEventListener("change", () => {
 			checkedColor = couleur.value;
+			elt.setAttribute("data-bs-toggle", "modal");
+			elt.setAttribute("data-bs-target", "#panier");
 		});
 
 		// Envoi des données de l'article et la quantité commandé dans le pannier
-		document.querySelector(".addToCart").addEventListener("click", (e) => {
+		let elt = document.querySelector(".addToCart");
+		elt.addEventListener("click", (e) => {
 			e.preventDefault();
+
 			const id = idArticle;
 			const color = checkedColor;
 			const quantity = qte.value;
 
-			if (color == undefined) {
+			if (color === undefined) {
 				alert("erreur couleur");
 			} else {
 				const products = new Products(id, color, quantity);
-				document.querySelector('.modal-text').innerText = `${teddie.name} en ${color} a bien été ajouté au panier !`;
+				document.querySelector(
+					".modal-text"
+				).innerText = `${teddie.name} en ${color} a bien été ajouté au panier !`;
 
-				let keys = `${teddie.name}_${color}`;
+				let keys = `${teddie._id}_${color}`;
+				keys = keys.replaceAll(" ", "-");
 
 				try {
 					localStorage.setItem(keys, JSON.stringify(products));
@@ -77,18 +80,10 @@ fetch(`http://localhost:3000/api/teddies/${idArticle}`)
 					console.log(error);
 				}
 			}
-
 		});
 	})
 	.catch(function (err) {
 		console.log(err);
 	});
 
-	
-
 chooseQuantity();
-
-
-
-
-

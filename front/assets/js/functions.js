@@ -22,6 +22,7 @@ function chooseQuantity() {
 	
 	plusOne.addEventListener("click", function () {
 		qte.value++;
+
 	});
 	
 	minusOne.addEventListener("click", function () {
@@ -31,20 +32,27 @@ function chooseQuantity() {
 		}
 	});
 }
-//function pour changer la quantité
-// function changeQuantiy(article) {
-// 	let plusOne = document.querySelector(".buttonChangePlusOne");
-// 	let minusOne = document.querySelector(".buttonChangeMinusOne");
-	
-// 	plusOne.addEventListener("click", function () {
-// 		//quantity.value++;
-// 		console.log('plus 1');
-// 	});
-	
-// 	minusOne.addEventListener("click", function () {
-// 		// 
-// 		console.log('moins 1');
-// 	});
-// }
 
 
+//Fonction pour supprimer un article du panier
+function deleteItem(){
+
+	const supprimer = Array.from(
+		document.querySelectorAll(".suppression"));
+
+	supprimer.forEach((supp) => {
+		supp.addEventListener("click", (e) => {
+			for (let i = 0; i < supprimer.length; i++) {
+				if (supprimer[i] === e.target) {
+					const keyToDelete =
+						e.target.classList[
+							e.target.classList.length - 1
+						];
+	
+					localStorage.removeItem(keyToDelete);
+					document.location.reload();
+				}
+			}
+		});
+	});
+}

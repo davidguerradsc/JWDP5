@@ -79,15 +79,16 @@
 							></p>
 						</div>
 						<div class="row">
-							<div class="col-md-6 justify-content-center">
+							<div class="col-6 justify-content-center mb-5 mb-md-0">
 								<button type="button" class="buttonMinusOne">
 									-
 								</button>
 								<input
 									type="text"
 									pattern="[0-9]"
-									class="col-md-3 text-center quantity"
+									class="col-3 text-center quantity"
 									value="1"
+									readonly
 								/>
 								<button type="button" class="buttonPlusOne">
 									+
@@ -105,8 +106,8 @@
 								<button
 									type="button"
 									class="btn btn-primary addToCart"
-									data-bs-toggle="modal"
-									data-bs-target="#panier"
+									data-bs-toggle=""
+									data-bs-target=""
 								>
 									Ajouter au panier
 								</button>
@@ -117,7 +118,12 @@
 			</div>
 		</div>
 
-		<!-- Modal -->
+		<footer class="footer mt-auto py-3 bg-light text-center">
+			<div class="container">
+				<span class="text-muted ">Tous droits reservé © Orinoco</span>
+			</div>
+		</footer>
+		<!-- Modal color ok -->
 		<div
 			class="modal fade"
 			id="panier"
@@ -154,9 +160,12 @@
 					</div>
 				</div>
 			</div>
+			
+			
+			
 		</div>
-		<script src="../js/functions.js"></script>
-		<script src="../js/article.js"></script>
+		<script src="../assets/js/functions.js"></script>
+		<script src="../assets/js/article.js"></script>
 		<!-- <script src="../js/cart.js"></script> -->
 
 		<script
